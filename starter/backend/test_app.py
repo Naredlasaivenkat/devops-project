@@ -1,5 +1,6 @@
-from . import app
 import os
+
+from . import app
 
 
 def test_movies_endpoint_returns_200():
@@ -19,9 +20,9 @@ def test_movies_endpoint_returns_valid_data():
     with app.test_client() as client:
         response = client.get("/movies/")
         data = response.get_json()
+
         assert isinstance(data, dict)
         assert "movies" in data
         assert isinstance(data.get("movies"), list)
         assert len(data["movies"]) > 0
         assert "title" in data["movies"][0]
-
